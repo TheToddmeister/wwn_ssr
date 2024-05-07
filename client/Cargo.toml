@@ -1,0 +1,44 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wwn_definitions = {path = "../wwn_definitions" }
+
+leptos.workspace = true
+leptos_meta.workspace = true
+leptos_router.workspace = true
+leptos_axum = { workspace = true, optional = true }
+leptos_image= {workspace = true, optional = true}
+serde.workspace = true
+
+
+leptonic.workspace = true
+
+http.workspace = true
+cfg-if.workspace = true
+thiserror.workspace = true
+stylance = "0.3.0"
+
+
+[features]
+default = []
+hydrate = [
+    "leptos/hydrate",
+    "leptos_meta/hydrate",
+    "leptos_router/hydrate",
+    "leptonic/hydrate",
+    "leptos_image/hydrate",
+
+]
+ssr = ["leptos/ssr",
+    "leptos_meta/ssr",
+    "leptos_router/ssr",
+    "dep:leptos_axum",
+    "leptonic/ssr",
+    "leptos_image/ssr",]
+leptos_image = ["dep:leptos_image"]
+
